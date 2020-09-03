@@ -15,7 +15,16 @@ function Login() {
                 
                 <button className="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
                 
-                <p className="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
+                <div className="msg-login text-white text-center my-5">
+                    <span>Você está conectado. &#10004;</span>
+                    <span>Usuário ou senha incorretos. &#9888;</span>
+                </div>
+
+                <div className="opcoes-login mt-5 text-center">
+                    <a href="#" className="mx-2">Recuperar senha</a>
+                    <span className="text-white">&#9830;</span>
+                    <a href="#" className="mx-2">Quero cadastrar</a>
+                </div>
             </form>
         </div>
     )
