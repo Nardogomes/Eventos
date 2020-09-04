@@ -7,13 +7,14 @@ function Login() {
 
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
+    const [msgTipo, setMsgTipo] = useState()
 
     function logar() {
         firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(resultado => {
-                alert('Usuário logado')
+                setMsgTipo('sucesso')
             }).catch(erro => {
-                alert(erro)
+                setMsgTipo('erro')
             })
     }
 
@@ -30,8 +31,8 @@ function Login() {
                 <button className="btn btn-lg btn-login btn-block" type="button" onClick={logar}>Logar</button>
                 
                 <div className="msg-login text-white text-center my-5">
-                    <span>Você está conectado. &#10004;</span>
-                    <span>Usuário ou senha incorretos. &#9888;</span>
+                    {msgTipo === 'sucesso' && <span>Você está conectado. &#10004;</span>}
+                    {msgTipo === 'erro' && <span>Usuário ou senha incorretos. &#9888;</span>}
                 </div>
 
                 <div className="opcoes-login mt-5 text-center">
