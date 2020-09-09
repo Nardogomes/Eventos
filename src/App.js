@@ -1,8 +1,16 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+/* Páginas */
+import Login from './view/login/'
+import NovoUsuario from './view/usuario-novo/'
 
 function App() {
   return (
-    <h1>Só alegria!</h1>
+    <Router>
+      <Route exact path='/' component={Login} />
+      <Route exact path='/novousuario' component={NovoUsuario} />
+    </Router>
   );
 }
 
