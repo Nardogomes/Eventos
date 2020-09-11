@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import firebase from '../../config/firebase'
 import 'firebase/auth'
+import NavBar from '../../components/navbar/'
 
 import './usuario-novo.css'
 
@@ -49,26 +50,29 @@ function NovoUsuario() {
     }
 
     return(
-        <div className="form-cadastro">
-            <form className="text-center form-login mx-auto mt-5">
-                
-                <h1 className="h3 bm-3 text-black font-weight-bold">Cadastro</h1>
+        <>
+            <NavBar/>
+            <div className="form-cadastro">
+                <form className="text-center form-login mx-auto mt-5">
+                    
+                    <h1 className="h3 bm-3 text-black font-weight-bold">Cadastro</h1>
 
-                <input onChange={ (e) => setEmail(e.target.value) } type="email" className="form-control my-2" placeholder="E-mail"/>
-                <input onChange={ (e) => setSenha(e.target.value) } type="password" className="form-control my-2" placeholder="Senha"/>
+                    <input onChange={ (e) => setEmail(e.target.value) } type="email" className="form-control my-2" placeholder="E-mail"/>
+                    <input onChange={ (e) => setSenha(e.target.value) } type="password" className="form-control my-2" placeholder="Senha"/>
 
-                {
-                    carregando ? <div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>
-                    : <button onClick={cadastrar} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-cadastro">Cadastrar</button>
-                }
-                
-                <div className="msg-login text-black text-center my-5">
-                    {msgTipo === 'sucesso' && <span>Usuário cadastrado com sucesso. &#10004;</span>}
-                    {msgTipo === 'erro' && <span>{msg} &#9888;</span>}
-                </div>
+                    {
+                        carregando ? <div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>
+                        : <button onClick={cadastrar} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-cadastro">Cadastrar</button>
+                    }
+                    
+                    <div className="msg-login text-black text-center my-5">
+                        {msgTipo === 'sucesso' && <span>Usuário cadastrado com sucesso. &#10004;</span>}
+                        {msgTipo === 'erro' && <span>{msg} &#9888;</span>}
+                    </div>
 
-            </form>
-        </div>
+                </form>
+            </div>
+        </>
     )
 }
 
