@@ -34,6 +34,7 @@ function Login() {
 
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
+                    <i class="far fa-calendar-check mb-4 text-white fa-7x"></i>
                     <h1 className="h3 mb-3 text-white font-weight-bold">Login</h1>
                 </div>
                 
@@ -48,7 +49,7 @@ function Login() {
                 </div>
 
                 <div className="opcoes-login mt-5 text-center">
-                    <a href="/index.html" className="mx-2">Recuperar senha</a>
+                    <Link to="/usuariorecuperarsenha" className="mx-2">Recuperar senha</Link>
                     <span className="text-white">&#9830;</span>
                     <Link to='novousuario' className="mx-2">Quero cadastrar</Link>
                 </div>
