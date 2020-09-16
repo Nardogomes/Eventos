@@ -9,6 +9,7 @@ function NavBar() {
 
     return(
         <nav className="navbar navbar-expand-lg">
+            <i class="far fa-calendar-check text-white mr-2 fa-2x"></i>
             <span className="navbar-brand text-white font-weight-bold">Eventos</span>
             
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
