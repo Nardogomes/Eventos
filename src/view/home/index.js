@@ -6,22 +6,36 @@ import NavBar from '../../components/navbar/'
 import firebase from '../../config/firebase'
 import EventoCard from '../../components/evento-card/'
 
-function Home() {
+function Home({match}) {
 
     const [eventos, setEventos] = useState([])
     let listaEventos = []
+    const usuarioEmail = useSelector(state => state.usuarioEmail)
 
     useEffect(() => {
-        firebase.firestore().collection("eventos").get().then( async (resultado) => {
-            await resultado.docs.forEach(doc => {
-                listaEventos.push({
-                    id: doc.id,
-                    ...doc.data()
+        if(match.params.parametro) {
+            firebase.firestore().collection("eventos").where('usuario','==', usuarioEmail).get().then((resultado) => {
+                resultado.docs.forEach(doc => {
+                    listaEventos.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
                 })
+    
+                setEventos(listaEventos)
             })
-
-            setEventos(listaEventos)
-        })
+        } else {
+            firebase.firestore().collection("eventos").get().then((resultado) => {
+                resultado.docs.forEach(doc => {
+                    listaEventos.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
+                })
+    
+                setEventos(listaEventos)
+            })
+        }
     })
 
     return(
