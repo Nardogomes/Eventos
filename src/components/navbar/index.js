@@ -29,7 +29,7 @@ function NavBar() {
                             <Link className="nav-link" to="/eventocadastro">Publicar Evento</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="eventos/meus">Meus Eventos</Link>
+                            <Link className="nav-link" to="/eventos/meus">Meus Eventos</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" onClick={() => dispatch({type: 'LOG_OUT'})}>Sair</Link>
@@ -38,10 +38,10 @@ function NavBar() {
                         :
                         <>
                         <li className="nav-item">
-                            <Link className="nav-link" to="novousuario">Cadastrar</Link>
+                            <Link className="nav-link" to="/novousuario">Cadastrar</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="login">Login</Link>
+                            <Link className="nav-link" to="/login">Login</Link>
                         </li>
                         </>
                     }
