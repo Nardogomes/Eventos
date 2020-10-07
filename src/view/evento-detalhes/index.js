@@ -13,14 +13,19 @@ function EventoDetalhes(props) {
     const [carregando, setCarregando] = React.useState(1)
 
     React.useEffect(() => {
-        firebase.firestore().collection('eventos').doc(props.match.params.id).get().then(resultado => {
-            setEvento(resultado.data())
-            firebase.storage().ref(`imagens/${evento.foto}`).getDownloadURL().then(url => {
-                setUrlImg(url)
-                setCarregando(0)
+        if(carregando) {
+            firebase.firestore().collection('eventos').doc(props.match.params.id).get().then(resultado => {
+                setEvento(resultado.data())
+                firebase.firestore().collection('eventos').doc(props.match.params.id).update('visualizacoes', resultado.data().visualizacoes + 1)
+                firebase.storage().ref(`imagens/${resultado.data().foto}`).getDownloadURL().then(url => {
+                    setUrlImg(url)
+                    setCarregando(0)
+                })
             })
-        })
-    })
+        } else {
+            firebase.storage().ref(`imagens/${evento.foto}`).getDownloadURL().then(url => setUrlImg(url))
+        }
+    },[])
 
     return(
         <>
@@ -34,7 +39,7 @@ function EventoDetalhes(props) {
                         <img src={urlImg} className="img-banner" alt="Banner" />
 
                         <div className="col-12 text-right mt-1 visualizacoes">
-                            <i className="fas fa-eye"> <span>{evento.visualizacoes}</span></i>
+                            <i className="fas fa-eye"> <span>{evento.visualizacoes + 1}</span></i>
                         </div>
 
                         <h3 className="mx-auto mt-5 titulo"><strong>{evento.titulo}</strong></h3>
@@ -71,7 +76,7 @@ function EventoDetalhes(props) {
 
                     {
                         usuarioLogado === evento.usuario ?
-                        <Link to='' className="btn-editar"><i className="fas fa-pen-square fa-3x"></i></Link>
+                        <Link to={`/editarevento/${props.match.params.id}`} className="btn-editar"><i className="fas fa-pen-square fa-3x"></i></Link>
                         : ''
                     }
                     </div>
