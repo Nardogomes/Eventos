@@ -23,14 +23,16 @@ function EventoCadastro(props) {
     const db = firebase.firestore()
 
     React.useEffect(() => {
-        firebase.firestore().collection('eventos').doc(props.match.params.id).get().then(resultado => {
-            setTitulo(resultado.data().titulo)
-            setTipo(resultado.data().tipo)
-            setDetalhes(resultado.data().detalhes)
-            setData(resultado.data().data)
-            setHora(resultado.data().hora)
-            setFotoAtual(resultado.data().foto)
-        })
+        if(props.match.params.id){
+            firebase.firestore().collection('eventos').doc(props.match.params.id).get().then(resultado => {
+                setTitulo(resultado.data().titulo)
+                setTipo(resultado.data().tipo)
+                setDetalhes(resultado.data().detalhes)
+                setData(resultado.data().data)
+                setHora(resultado.data().hora)
+                setFotoAtual(resultado.data().foto)
+            })
+        }
     },[carregando])
 
     function atualizar() {
